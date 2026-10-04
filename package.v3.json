@@ -1,17 +1,15 @@
 {
     "P115Disk": {
         "name": "115网盘储存",
-        "description": "更快更强的115网盘存储模块。",
+        "description": "更快更强的115网盘存储模块。依赖已固定为 python-concurrenttools==0.1.8，避免 concurrenttools 版本漂移导致插件加载失败。",
         "labels": "云盘",
         "version": "3.0.1",
-        "release": true,
         "icon": "https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/refs/heads/v2/src/assets/images/misc/u115.png",
         "author": "DDSRem",
-        "system_version": ">=3.0.0",
+        "system_version": ">=2.13.14",
         "level": 1,
         "history": {
-            "v3.0.1": "修复清理缓存响应并适配 V3 存储管理接口",
-            "v3.0.0": "适配 MoviePilot V3 SDK 与插件依赖清单"
+            "v3.0.1": "本地固化版：固定 python-concurrenttools==0.1.8，保留 p115client==0.0.9.6.5.1"
         }
     },
     "P123Disk": {
@@ -196,6 +194,21 @@
         "level": 1,
         "history": {
             "v3.0.0": "适配 MoviePilot V3 SDK、数据库与统一媒体身份契约"
+        }
+    },
+    "P115StrmHelper": {
+        "name": "115网盘STRM助手",
+        "description": "115网盘STRM生成一条龙服务。本地固化版：整理接管成功后注销 MoviePilot durable 准入登记，修复 MP 3.x 下「入库成功后又重复整理 / 90008 先删后败」问题。",
+        "labels": "云盘",
+        "version": "3.0.2",
+        "icon": "https://raw.githubusercontent.com/jxxghp/MoviePilot-Frontend/refs/heads/v2/src/assets/images/misc/u115.png",
+        "author": "DDSRem",
+        "system_version": ">=2.13.14",
+        "level": 1,
+        "history": {
+            "v3.0.2": "兼容 MoviePilot v3 MediaInfo.media_source，修复分享转存成功后因读取旧版 source 字段导致的误报失败；继承 v3.0.1 整理接管修复",
+            "v3.0.1": "本地固化修复版（基于上游 2.8.74）：1. 整理接管成功后注销 MoviePilot durable 准入登记，消除 15 秒整理队列回放；2. 幂等窗口 + 失败隔离，重复投递不再二次整理；3. 源文件缺失时跳过且不写失败历史（不再覆盖已入库成功记录）；4. 兼容 MoviePilot 3.0.x 内部契约",
+            "v2.8.74": "上游基线版本（DDSRem-Dev/MoviePilot-Plugins）：删除「同步删除」「同步处理软链接」功能"
         }
     }
 }
